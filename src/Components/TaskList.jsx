@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { FiCheckSquare, FiTrash } from "react-icons/fi";
 
 import './styles.css'
 
 export function TaskList() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([], localStorage.getItem('task'))
   const [newTaskTitle, setNewTaskTitle] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('task', JSON.stringify(tasks))
+  }, [tasks])
 
   function handleCreateNewTask() {
     if (!newTaskTitle) return
@@ -17,8 +22,7 @@ export function TaskList() {
     }
 
     setTasks([...tasks, newTask])
-    console.log(newTask.id)
-    console.log(newTask)
+    setNewTaskTitle('')
   }
 
   function handleToggleTaskCompletion(id) {
@@ -51,7 +55,7 @@ export function TaskList() {
             data-id="add-task-button"
             onClick={handleCreateNewTask}
           >
-            <FiCheckSquare size={16} color="#64748b"/>
+            <FiCheckSquare size={16} color="#f1f5f9"/>
           </button>
         </div>
       </header>
