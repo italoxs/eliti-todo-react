@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { FiCheckSquare, FiTrash } from "react-icons/fi";
 
 import './styles.css'
+import { useEffect } from "react";
 
 export function TaskList() {
-  const [tasks, setTasks] = useState([], localStorage.getItem('task'))
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('task') ?? '[]'))
   const [newTaskTitle, setNewTaskTitle] = useState('')
 
   useEffect(() => {
