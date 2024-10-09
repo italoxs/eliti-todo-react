@@ -8,10 +8,17 @@
 body {
   background: #020617;
   color: #e2e8f0;
-  font: 16px "Poppins", Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 1rem;
   display: grid;
   place-items: center;
   height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body, input, textarea, button {
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .container {
