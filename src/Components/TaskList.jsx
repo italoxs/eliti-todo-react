@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { useState } from "react";
 import { FiCheckSquare, FiTrash } from "react-icons/fi";
 
@@ -38,6 +39,11 @@ export function TaskList() {
     setTasks(tasks.filter(task => task.id !== id))
   }
 
+  const variants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 }
+  }
+
   return (
     <section className="task-list container">
         <h1>Minhas tarefas</h1>
@@ -63,7 +69,13 @@ export function TaskList() {
       <main>
         <ul>
           {tasks.map(task => (
-            <li key={task.id}>
+            <motion.li 
+              key={task.id}
+              initial= 'initial'
+              animate= 'animate'
+              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+            >
               <div className={task.isComplete ? 'completed' : ''} data-id="tasks">
                 <label className="checkbox-container">
                   <input 
@@ -78,13 +90,14 @@ export function TaskList() {
               </div>
 
               <button 
+                className="remove"
                 type="button"
                 data-id="remove-task-button"
                 onClick={() => handleRemoveTask(task.id)}
               >
                 <FiTrash size={16} />
               </button>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </main>
